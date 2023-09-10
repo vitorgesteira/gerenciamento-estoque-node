@@ -18,3 +18,14 @@ exports.lerProdutos = (req, res) => {
         // res.send({usuarios:results.rows})
     })
 }
+
+exports.lerProdutosPorCategoria = (req, res) => {
+    const categoria = req.params.categoria;
+
+    db.query('SELECT produto.nome_produto, produto.qtd, produto.valor, categoria.nome_categoria FROM produto INNER JOIN categoria ON produto.categoria_id = categoria.id WHERE categoria_id = $1', [categoria], (error, results) => {
+        if(error){
+            return console.error('error running query', error);
+        }
+        res.json({produtos:results.rows})
+    })
+} //http://localhost:3000/produtos/categorias/1
