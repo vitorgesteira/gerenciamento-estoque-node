@@ -1,11 +1,12 @@
 const express = require('express');
+const db = require('./db');
 const app = express();
-const port = 3000;
 
 //rotas para pegar dados
-app.get('/', (req, res) => {res.send('ola ola')});
+app.get('/', (req, res) => {res.send('ola')});
+app.get('/produtos', (req, res) => db.lerProdutos(req, res));
 
 //URL e porta (socket do servidor)
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
-})
+app.listen(process.env.PORT, () => {
+    console.log(`Example app listening on port ${process.env.PORT}`)
+  })
