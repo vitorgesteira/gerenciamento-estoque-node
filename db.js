@@ -29,3 +29,16 @@ exports.lerProdutosPorCategoria = (req, res) => {
         res.json({produtos:results.rows})
     })
 } //http://localhost:3000/produtos/categorias/1
+
+exports.criarProduto = (req, res) => {
+    const { nome_produto, qtd, valor, categoria_id } = req.body
+
+    db.query('INSERT INTO produto (nome_produto, qtd, valor, categoria_id) VALUES ($1, $2, $3, $4)',
+    [nome_produto, qtd, valor, categoria_id], (error, results) => {
+        if(error){
+            throw error
+        }
+        res.json({produto:{nome_produto, qtd, valor, categoria_id}})
+    })
+}
+

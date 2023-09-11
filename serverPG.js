@@ -11,6 +11,8 @@ app.get('/', (req, res) => {res.send('ola')});
 app.get('/produtos', (req, res) => db.lerProdutos(req, res));
 app.get('/produtos/categorias/:categoria', (req, res) => db.lerProdutosPorCategoria(req, res));
 
+//rotas para atulizar dados
+app.post('/produtos', (req, res) => db.criarProduto(req, res));
 
 //URL e porta (socket do servidor)
 app.listen(process.env.PORT, () => {

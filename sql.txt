@@ -1,0 +1,32 @@
+create table produto (
+    id serial primary key,
+    nome_produto VARCHAR(30) NOT NULL,
+    qtd integer not null,
+    valor decimal(10, 2) not null,
+    categoria_id integer not null,
+    foreign key (categoria_id) references categoria (id)
+);
+
+create table categoria(
+    id serial primary key,
+    nome_categoria varchar(30) not null
+);
+
+insert into produto (nome_produto, qtd, valor, categoria_id)
+values ('coca-cola', 5, 5.40, 1);
+
+select * from produto inner join categoria on produto.categoria_id = categoria.id
+
+
+insert into categoria (nome_categoria) 
+values ('comidas');
+
+select * from categoria herer id = 1 
+
+select * from categoria order by id asc
+
+select * from categoria here id = 1 or id = 2
+
+update categoria set descricao = 'perfumaria' where id = 3
+
+delete from categoria here id = 2
