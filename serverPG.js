@@ -13,6 +13,7 @@ app.get('/produtos/categorias/:categoria', (req, res) => db.lerProdutosPorCatego
 
 //rotas para atulizar dados
 app.post('/produtos', (req, res) => db.criarProduto(req, res));
+app.put('/produtos/:id', (req, res) => db.atualizarProduto(req, res));
 app.delete('/produtos/:id', (req, res) => db.deletarProduto(req, res));
 
 //URL e porta (socket do servidor)

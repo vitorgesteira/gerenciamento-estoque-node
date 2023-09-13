@@ -42,6 +42,23 @@ exports.criarProduto = (req, res) => {
     })
 }
 
+exports.atualizarProduto = (req, res) => {
+    const id = req.params.id
+    console.log('atualizar '+ id);
+    const { nome_produto, qtd, valor, categoria_id } = req.body;
+    
+    db.query(
+        'UPDATE produto SET nome_produto = $1, qtd = $2, valor = $3, categoria_id = $4 WHERE id = $5',
+        [nome_produto, qtd, valor, categoria_id, id],
+        (error, results) => {
+            if(error){
+                throw error
+            }
+            res.send('Produto atualizado com sucesso')
+        }
+    )
+}
+
 exports.deletarProduto = (req, res) => {
     const id = req.params.id
 
