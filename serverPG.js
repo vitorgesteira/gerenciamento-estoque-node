@@ -2,12 +2,18 @@ const express = require('express');
 const db = require('./db');
 const app = express();
 const bodyParser = require('body-parser')
+var cors = require('cors')  
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.json())
 
+app.set('view engine', 'ejs');
+app.set('views', './views');
+
+app.use(cors())
+
 //rotas para pegar dados
-app.get('/', (req, res) => {res.send('ola')});
+app.get('/', (req, res) => res.render('home'));
 app.get('/produtos', (req, res) => db.lerProdutos(req, res));
 app.get('/produtos/categorias/:categoria', (req, res) => db.lerProdutosPorCategoria(req, res));
 

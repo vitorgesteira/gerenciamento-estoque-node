@@ -1,5 +1,5 @@
 create table produto (
-    id serial primary key,
+    id serial primary key,      
     nome_produto VARCHAR(30) NOT NULL,
     qtd integer not null,
     valor decimal(10, 2) not null,
