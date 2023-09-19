@@ -17,12 +17,15 @@ app.get('/', (req, res) => res.render('home'));
 app.get('/produtos', (req, res) => db.lerProdutos(req, res));
 app.get('/produtos/categorias/:categoria', (req, res) => db.lerProdutosPorCategoria(req, res));
 
+//api interface para mostrar formulario do front
+app.get('/cadastrarproduto', (req, res) => res.render('cadastrarproduto'));
+
 //rotas para atulizar dados
 app.post('/produtos', (req, res) => db.criarProduto(req, res));
 app.put('/produtos/:id', (req, res) => db.atualizarProduto(req, res));
-app.delete('/produtos/:id', (req, res) => db.deletarProduto(req, res));
+app.delete('/produtos/:id', (req, re) => db.desletarProduto(req, res));
 
 //URL e porta (socket do servidor)
 app.listen(process.env.PORT, () => {
-    console.log(`Example app listening on port ${process.env.PORT}`)
+    console.log(`Example app listening on port ${process.env.PORT}`);
   })
