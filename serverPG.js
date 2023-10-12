@@ -18,7 +18,7 @@ app.get('/produtos', (req, res) => db.lerProdutos(req, res));
 app.get('/produtos/categorias/:categoria', (req, res) => db.lerProdutosPorCategoria(req, res));
 
 //api interface para mostrar formulario do front
-app.get('/cadastrarproduto', (req, res) => res.render('cadastrarproduto'));
+app.get('/cadastrarProduto', (req, res) => db.createProdutos(req, res));
 
 //rotas para atulizar dados
 app.post('/produtos', (req, res) => db.criarProduto(req, res));

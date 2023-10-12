@@ -12,12 +12,24 @@ db.connect(function(err) {
 exports.lerProdutos = (req, res) => {
     db.query('SELECT produto.id, produto.nome_produto, produto.qtd, produto.valor, categoria.nome_categoria FROM produto INNER JOIN categoria ON produto.categoria_id = categoria.id', (error, results) =>{
         if(error){
-            return console.error('error running query', err);
+            return console.error('error running query', error);
         }
         res.json({produtos:results.rows})
         // res.send({usuarios:results.rows})
     })
 }
+
+exports.createProdutos = (req, res) => {
+    db.query('SELECT id, nome_categoria FROM categoria', (error, results) =>{
+        if(error){
+            return console.error('error running query', error);
+        }
+        
+        res.render('cadastrarProduto', {categorias:results.rows})
+    })
+    
+}
+
 
 exports.lerProdutosPorCategoria = (req, res) => {
     const categoria = req.params.categoria;
@@ -31,14 +43,21 @@ exports.lerProdutosPorCategoria = (req, res) => {
 } //http://localhost:3000/produtos/categorias/1
 
 exports.criarProduto = (req, res) => {
-    const { nome_produto, qtd, valor, categoria_id } = req.body
+    // const { nome_produto, qtd, valor, categoria_id } = req.body
+    nome_produto = String(req.body.nome_produto)
+    qtd = parseInt(req.body.qtd)
+    valor = Number.parseFloat(req.body.valor).toFixed(2)
+    categoria_id = parseInt(req.body.categoria_id)
+    console.log(req.body)
+    console.log(valor)
 
     db.query('INSERT INTO produto (nome_produto, qtd, valor, categoria_id) VALUES ($1, $2, $3, $4)',
     [nome_produto, qtd, valor, categoria_id], (error, results) => {
         if(error){
             throw error
         }
-        res.json({produto:{nome_produto, qtd, valor, categoria_id}})
+        console.log(results)
+        res.render('home')
     })
 }
 
@@ -68,5 +87,14 @@ exports.deletarProduto = (req, res) => {
             console.log("Erro ao deletar o produto", error)
         }
         res.send("Produto deletado com sucesso")
+    })
+}
+
+exports.lerCategorias = (req, res) => {
+    db.query('SELECT nome_categoria FROM categoria', (error, results) => {
+        if(error){
+            return console.error('error running query', error);
+        }
+        res.json({categorias:results.rows})
     })
 }

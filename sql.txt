@@ -2,7 +2,7 @@ create table produto (
     id serial primary key,      
     nome_produto VARCHAR(30) NOT NULL,
     qtd integer not null,
-    valor decimal(10, 2) not null,
+    valor VARCHAR(11) not null,
     categoria_id integer not null,
     foreign key (categoria_id) references categoria (id)
 );
@@ -30,3 +30,10 @@ select * from categoria here id = 1 or id = 2
 update categoria set descricao = 'perfumaria' where id = 3
 
 delete from categoria here id = 2
+
+ALTER TABLE produto
+ALTER COLUMN valor TYPE VARCHAR(11);
+
+pattern = "[0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2}"
+
+res.render('cadastrarProduto')
