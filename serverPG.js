@@ -15,7 +15,8 @@ app.use(cors())
 //rotas para pegar dados
 app.get('/', (req, res) => res.render('home'));
 app.get('/produtos', (req, res) => db.lerProdutos(req, res));
-app.get('/produtos/categorias/:categoria', (req, res) => db.lerProdutosPorCategoria(req, res));
+app.get('/produtos/detalhes/:id', (req, res) => db.produtosDetelhes(req, res));
+// app.get('/produtos/categorias/:categoria', (req, res) => db.lerProdutosPorCategoria(req, res));
 
 //api interface para mostrar formulario do front
 app.get('/cadastrarProduto', (req, res) => db.createProdutos(req, res));

@@ -20,6 +20,18 @@ exports.lerProdutos = (req, res) => {
     })
 }
 
+exports.produtosDetelhes = (req, res) => {
+    const id = req.params.id
+
+    db.query('SELECT produto.nome_produto, produto.qtd, produto.valor, categoria.nome_categoria FROM produto INNER JOIN categoria ON produto.categoria_id = categoria.id WHERE produto.id = $1', [id], (error, results) => {
+        if (error) {
+            return console.error('error running query', error);
+        }
+        // res.json({produtos:results.rows})
+        res.render('detalhes', {produtos:results.rows[0]})
+    })
+}
+
 exports.createProdutos = (req, res) => {
     db.query('SELECT id, nome_categoria FROM categoria', (error, results) =>{
         if(error){

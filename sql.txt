@@ -38,6 +38,6 @@ pattern = "[0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3
 
 res.render('cadastrarProduto')
 
-// app.get('/produtos/detalhes/:id', (req, res) => db.produtosDetelhes(req, res));
+
 // app.get('/produtos/atualizar/:id', (req, res) => db.ProdutosAtualizar(req, res));
 // app.get('/produtos/delete/:id', (req, res) => db.ProdutosDelete(req, res));
