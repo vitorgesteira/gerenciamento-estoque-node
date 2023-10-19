@@ -14,8 +14,9 @@ exports.lerProdutos = (req, res) => {
         if(error){
             return console.error('error running query', error);
         }
-        res.json({produtos:results.rows})
+        // res.json({produtos:results.rows})
         // res.send({usuarios:results.rows})
+        res.render('allProdutos', {produtos:results.rows})
     })
 }
 
@@ -29,7 +30,6 @@ exports.createProdutos = (req, res) => {
     })
     
 }
-
 
 exports.lerProdutosPorCategoria = (req, res) => {
     const categoria = req.params.categoria;
