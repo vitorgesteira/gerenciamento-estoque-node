@@ -73,6 +73,18 @@ exports.criarProduto = (req, res) => {
     })
 }
 
+exports.mudarProduto = (req, res) => {
+    const id =req.params.id
+    // console.log('mudar '+ id)
+    db.query('SELECT produto.id, produto.nome_produto, produto.qtd, produto.valor, categoria.nome_categoria FROM produto INNER JOIN categoria ON produto.categoria_id = categoria.id WHERE produto.id = $1', [id], (error, results) => {
+        if(error){
+            throw error
+        }
+        res.render('mudarProduto', {produtos:results.rows[0]})
+        // res.json({produtos:results.rows[0]})
+    })
+}
+
 exports.atualizarProduto = (req, res) => {
     const id = req.params.id
     console.log('atualizar '+ id);
